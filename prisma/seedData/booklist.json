@@ -1,0 +1,30 @@
+[
+   
+  {
+    "Id": "1",
+    "title": "Javascript",
+    "author": "David",
+    "price": "$250.00",
+    "actions": "Edit , Delete"           
+  },
+  {
+    "Id": "2",
+    "title": "Linear",
+    "author": "Gordof Alice",
+    "price": "$8.00",
+    "actions": "Edit , Delete" 
+  },
+  {
+    "Id": "3",
+    "title": "Calculus",
+    "author": "Zain",
+    "price": "$45.00",
+    "actions": "Edit , Delete" 
+  }, 
+ { "Id": "4",
+    "title": "Atomic Habits",
+    "author": "James Clear",
+    "price": "$32.00",
+    "actions": "Edit , Delete" 
+ }
+]

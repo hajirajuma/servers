@@ -1,0 +1,73 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Book {
+  id          Int      @id @default(autoincrement())
+  title       String
+  author      String
+  publisher   String
+  price       String   // Display price (e.g., "K40000/$4.5")
+  numericPrice Float   // Numeric price for calculations
+  image       String
+  pdfUrl      String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Relationship with OrderItem
+  orderItems  OrderItem[]
+
+  @@map("booklist")
+}
+
+model Order {
+  id          Int         @id @default(autoincrement())
+  customerName String?
+  customerEmail String?
+  totalAmount Float
+  status      OrderStatus @default(PENDING)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  
+  // Relationship with OrderItem
+  orderItems  OrderItem[]
+
+  @@map("orders")
+}
+
+model OrderItem {
+  id       Int @id @default(autoincrement())
+  quantity Int
+  price    Float // Price at time of order
+  
+  // Foreign keys
+  orderId  Int
+  bookId   Int
+  
+  // Relationships
+  order    Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  book     Book  @relation(fields: [bookId], references: [id])
+
+  @@map("order_items")
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+
