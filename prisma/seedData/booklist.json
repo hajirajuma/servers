@@ -1,30 +1,56 @@
-[
-   
-  {
-    "Id": "1",
-    "title": "Javascript",
-    "author": "David",
-    "price": "$250.00",
-    "actions": "Edit , Delete"           
-  },
-  {
-    "Id": "2",
-    "title": "Linear",
-    "author": "Gordof Alice",
-    "price": "$8.00",
-    "actions": "Edit , Delete" 
-  },
-  {
-    "Id": "3",
-    "title": "Calculus",
-    "author": "Zain",
-    "price": "$45.00",
-    "actions": "Edit , Delete" 
-  }, 
- { "Id": "4",
-    "title": "Atomic Habits",
-    "author": "James Clear",
-    "price": "$32.00",
-    "actions": "Edit , Delete" 
- }
-]
+ [
+      {
+        "title": "Data Analysis using SQL and Excel",
+        "author": "Gordon S.Linoff",
+       "publisher": "Wiley Publishing",
+        "price": "K40000/$4.5",
+        "numericPrice": 4.5,
+        "image": "/books/data1.jpg",
+        "pdfUrl": "/books/data.pdf"
+      },
+      {
+        "title": "JavaScript: The Complete Guide",
+        "author": "David Flanagan",
+        "publisher": "O'Reilly Media",
+        "price": "K30000/$3.8",
+        "numericPrice": 3.8,
+        "image": "/books/atom.jpg",
+        "pdfUrl": "/books/data.pdf"
+      },
+      {
+        "title": "Linear Algebra and Its Applications",
+        "author": "David C. Lay",
+        "publisher": "Pearson",
+        "price": "K50000/$6.4",
+        "numericPrice": 6.4,
+        "image": "/books/java.jpg",
+        "pdfUrl": "/books/data.pdf"
+      },
+      {
+        "title": "Physics: Principles and Problems",
+        "author": "Paul W. Zitzewitz",
+        "publisher": "McGraw-Hill",
+        "price": "K45000/$5.7",
+        "numericPrice": 5.7,
+        "image": "/books/phy.jpg",
+        "pdfUrl": "/books/data.pdf"
+      },
+      {
+        "title": "Java Programming Fundamentals",
+        "author": "Oracle Press",
+        "publisher": "McGraw-Hill",
+        "price": "K35000/$4.4",
+        "numericPrice": 4.4,
+        "image": "/books/line.jpg",
+        "pdfUrl": "/books/data.pdf"
+      },
+      {
+        "title": "Atomic Structure and Chemical Bonding",
+        "author": "Linus Pauling",
+        "publisher": "Academic Press",
+        "price": "K25000/$3.2",
+        "numericPrice": 3.2,
+        "image": "/books/stat.jpg",
+        "pdfUrl": "/books/data.pdf"
+      }
+    ]
