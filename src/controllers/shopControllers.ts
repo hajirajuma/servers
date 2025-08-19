@@ -3,17 +3,19 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
+
 // Types for request bodies
 interface CreateOrderRequest {
   customerName?: string;
-  customerEmail?: string;
-  items: {
+  customerEmail?: string; 
+    items: {
     bookId: number;
     quantity: number;
   }[];
 }
 
 interface CreateBookRequest {
+  
   title: string;
   author: string;
   publisher: string;

@@ -23,9 +23,13 @@ model Book {
   numericPrice Float   // Numeric price for calculations
   image       String
   pdfUrl      String
+ category  String?
+  cartItems CartItem[]
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   
+   @@index([title])
+  @@index([author])
   // Relationship with OrderItem
   orderItems  OrderItem[]
 
@@ -71,3 +75,126 @@ enum OrderStatus {
   CANCELLED
 }
 
+model CartItem {
+  id       String @id @default(cuid())
+  bookId   String
+  book     String
+  userId   String // Can be "guest" for non-authenticated users
+  quantity Int    @default(1)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+    
+  priceAtAddition Int // Snapshot of price when added
+
+  @@unique([cartId, bookId])
+  @@index([cartId])
+  @@index([bookId])
+}
+
+model Cart {
+  id        String   @id @default(auto()) @map("_id")
+  userId    String?  // Null for guest carts
+  sessionId String   @unique
+  items     CartItem[]
+  total     Int      @default(0) // Total in cents/minor units
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+  @@index([sessionId])
+}
+enum OrderStatus {
+  Pending
+  Unpaid
+  Paid
+  Shipped
+  Delivered
+}
+
+model Order {
+  id        String     @id @default(auto()) @map("_id")
+  userId    String?    // Null for guest orders
+  user      User?      @relation(fields: [userId], references: [id])
+  items     OrderItem[]
+  total     Int        @default(0) // Total in cents
+  status    OrderStatus @default(Pending)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  @@index([userId])
+  @@index([status])
+}
+
+model OrderItem {
+  id               String  @id @default(auto()) @map("_id")
+  order            Order   @relation(fields: [orderId], references: [id])
+  orderId          String
+  book             Book    @relation(fields: [bookId], references: [id])
+  bookId           Int
+  quantity         Int     @default(1)
+  priceAtPurchase  Int     // Price in cents at time of purchase
+
+  @@index([orderId])
+  @@index([bookId])
+}
+
+model User {
+  id        String   @id @default(auto()) @map("_id")
+  email     String   @unique
+  name      String?
+  password  String
+  role      String   @default("user") // "admin" or "user"
+  orders    Order[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([email])
+}
+
+enum OrderStatus {
+  Pending
+  Unpaid
+  Paid
+  Shipped
+  Delivered
+}
+
+model Order {
+  id        String     @id @default(auto()) @map("_id")
+  userId    String?    // Null for guest orders
+  user      User?      @relation(fields: [userId], references: [id])
+  items     OrderItem[]
+  total     Int        @default(0) // Total in cents
+  status    OrderStatus @default(Pending)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  @@index([userId])
+  @@index([status])
+}
+
+model OrderItem {
+  id               String  @id @default(auto()) @map("_id")
+  order            Order   @relation(fields: [orderId], references: [id])
+  orderId          String
+  book             Book    @relation(fields: [bookId], references: [id])
+  bookId           Int
+  quantity         Int     @default(1)
+  priceAtPurchase  Int     // Price in cents at time of purchase
+
+  @@index([orderId])
+  @@index([bookId])
+}
+
+model User {
+  id        String   @id @default(auto()) @map("_id")
+  email     String   @unique
+  name      String?
+  password  String
+  role      String   @default("user") // "admin" or "user"
+  orders    Order[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([email])
+}
