@@ -6,13 +6,12 @@ import {
   deleteBook,
   getOrders,
   updateOrderStatus
-} from '../controllers/adminControllers';
-import { authenticate, authorizeAdmin } from '../middleware/authMiddleware';
+} from '../controllers/adminControllers.js';
+import { authenticate, authorizeAdmin } from '../authMiddleware.ts/middleware.js';
 
 const router = express.Router();
 
 // Apply authentication and admin authorization to all routes
-router.use(authenticate, authorizeAdmin);
 
 // Book management routes
 router.get('/books', getBooks);

@@ -1,9 +1,19 @@
 import { Request, Response } from 'express';
-import { PrismaClient } from '@prisma/client';
-import { Book, Order, ApiResponse } from '../types/adminTypes';
+import { PrismaClient } from '../../generated/prisma/index.js';
+import { Book, Order, ApiResponse } from '../types/adminTypes.js';
 
 const prisma = new PrismaClient();
 
+
+interface book {
+  title: string;
+  author: string;
+  publisher: string;
+  price: string;
+  numericPrice: number;
+  image: string;
+  pdfUrl: string;
+}
 // Book Management
 export const getBooks = async (req: Request, res: Response<ApiResponse<Book[]>>) => {
   try {
@@ -33,7 +43,7 @@ export const addBook = async (req: Request, res: Response<ApiResponse<Book>>) =>
     const { title, author, price, imageUrl, pdfUrl } = req.body;
 
     // Convert price from dollars to cents
-    const priceInCents = Math.round(parseFloat(price) * 100;
+    const priceInCents = Math.round(parseFloat(price) * 100);
 
     const newBook = await prisma.book.create({
       data: {

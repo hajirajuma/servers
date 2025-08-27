@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from '../../generated/prisma/index.js';
 
 const prisma = new PrismaClient();
 
@@ -210,7 +210,7 @@ export const getBookById = async (
 
     const book = await prisma.book.findUnique({
       where: {
-        id: id
+       id: id
       }
     });
 
@@ -338,9 +338,9 @@ export const createBook = async (
         author,
         publisher,
         price,
-        image: image || null,
-        pdfUrl: pdfUrl || null,
-        category: category || null
+        image: image ,
+        pdfUrl: pdfUrl ,
+        category: category 
       }
     });
 

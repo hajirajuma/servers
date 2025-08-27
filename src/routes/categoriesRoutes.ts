@@ -9,7 +9,7 @@ import {
   createBook, 
   updateBook, 
   deleteBook 
-} from "../controllers/categoriesControllers";
+} from "../controllers/categoriesControllers.js";
 
 const router = Router();
 

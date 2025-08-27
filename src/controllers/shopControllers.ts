@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from '../../generated/prisma/index.js';
 
 const prisma = new PrismaClient();
 
@@ -15,7 +15,6 @@ interface CreateOrderRequest {
 }
 
 interface CreateBookRequest {
-  
   title: string;
   author: string;
   publisher: string;
@@ -360,8 +359,10 @@ export const updateOrderStatus = async (req: Request<{ id: string }, {}, UpdateO
 };
 
 // Add new book (admin function)
-export const createBook = async (req: Request<{}, {}, CreateBookRequest>, res: Response): Promise<void> => {
+export const createBook = async (req: Request, res: Response): Promise<void> => {
   try {
+    console.log('body', req.body);
+    
     const { title, author, publisher, price, numericPrice, image, pdfUrl } = req.body;
 
     // Validate required fields
@@ -385,6 +386,7 @@ export const createBook = async (req: Request<{}, {}, CreateBookRequest>, res: R
       }
     });
 
+    console.log("book", book);
     res.status(201).json({
       success: true,
       message: 'Book created successfully',
