@@ -1,4 +1,42 @@
-import express from 'express';
+import { Router } from 'express';
+import { 
+  getAllBooks, 
+  getFeaturedBooks, 
+  getBookById, 
+  getBooksByCategory, 
+  searchBooks 
+} from '../controllers/homeController.js';
+
+const router = Router();
+
+// @route   GET /api/books
+// @desc    Get all books
+// @access  Public
+router.get('/', getAllBooks);
+
+// @route   GET /api/books/featured
+// @desc    Get featured books
+// @access  Public
+router.get('/featured', getFeaturedBooks);
+
+// @route   GET /api/books/:id
+// @desc    Get single book
+// @access  Public
+router.get('/:id', getBookById);
+
+// @route   GET /api/books/category/:category
+// @desc    Get books by category
+// @access  Public
+router.get('/category/:category', getBooksByCategory);
+
+// @route   GET /api/books/search/:query
+// @desc    Search books
+// @access  Public
+router.get('/search/:query', searchBooks);
+
+export default router;
+
+/*import express from 'express';
 import { getAllBooks, getFeaturedBooks, getBookById, getBooksByCategory, searchBooks } from '../controllers/homeController.js';
 
 const router = express.Router();
@@ -19,3 +57,4 @@ router.get('/category/:category',getBooksByCategory);
 router.get('/search/:query',searchBooks);
 
 export default router;
+*/

@@ -10,6 +10,7 @@ export interface Book {
   updatedAt?: Date;
 }
 
+
 export interface Order {
   id: string;
   buyer: string;
@@ -21,7 +22,7 @@ export interface Order {
     price: number;
   }[];
   total: number;
-  status: 'Pending' | 'Unpaid' | 'Paid' | 'Shipped' | 'Delivered';
+  status: 'PENDING' | 'CONFIRMED' | 'SHIPPED' | 'DELIVERED' | 'CANCELLED';
   createdAt?: Date;
   updatedAt?: Date;
 }
