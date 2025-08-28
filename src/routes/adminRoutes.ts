@@ -7,7 +7,7 @@ import {
   getOrders,
   updateOrderStatus
 } from '../controllers/adminControllers.js';
-import { authenticate, authorizeAdmin } from '../authMiddleware.ts/middleware.js';
+
 
 const router = express.Router();
 

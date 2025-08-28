@@ -1,4 +1,4 @@
-import { PrismaClient } from '../../generated/prisma/index.js';
+import { PrismaClient } from '../../generated/prisma/index';
 const prisma = new PrismaClient();
 // Get all books
 export const getAllBooks = async (req, res) => {
